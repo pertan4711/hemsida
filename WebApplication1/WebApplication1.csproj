@@ -188,6 +188,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\redsea1.jpg" />
+    <Content Include="img\redsea2.jpg" />
+    <Content Include="img\redsea3.jpg" />
+    <Content Include="img\redsea4.jpg" />
+    <Content Include="img\redsea5.jpg" />
+    <Content Include="img\redsea6.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\media-dator.pubxml" />
@@ -245,7 +251,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
