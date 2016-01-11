@@ -1,0 +1,51 @@
+﻿@model WebApplication1.Models.Resa
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Resa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ResMal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResMal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Berattelse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Berattelse)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
