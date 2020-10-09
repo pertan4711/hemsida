@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{FA4192EC-C051-47A2-A9E4-D0D5335184C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1.Tests", "WebApplication1.Tests\WebApplication1.Tests.csproj", "{DCEFF2E1-6733-4FF7-A4C7-5F24A72CF630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hemsida", "Hemsida\Hemsida.csproj", "{71D5A157-DD48-4BE3-89E7-D1B368EBB2EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{DCEFF2E1-6733-4FF7-A4C7-5F24A72CF630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCEFF2E1-6733-4FF7-A4C7-5F24A72CF630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCEFF2E1-6733-4FF7-A4C7-5F24A72CF630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D5A157-DD48-4BE3-89E7-D1B368EBB2EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D5A157-DD48-4BE3-89E7-D1B368EBB2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D5A157-DD48-4BE3-89E7-D1B368EBB2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D5A157-DD48-4BE3-89E7-D1B368EBB2EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F822CB50-2F78-4984-8C1E-D58B00CCD5F3}
 	EndGlobalSection
 EndGlobal
