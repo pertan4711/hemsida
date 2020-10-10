@@ -1,8 +1,4 @@
-﻿@{
-    ViewBag.Title = "Buy pictures";
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>BuyPics: @ViewBag.Title</title>
@@ -28,5 +24,6 @@
 
     <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="~/js/BuyPics.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>
