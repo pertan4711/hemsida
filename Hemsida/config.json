@@ -1,0 +1,8 @@
+{
+	"Colors": {
+		"Favorite": "green"
+	},
+	"ConnectionStrings": {
+		"HemsidaConnectionString": "server=(localdb)\\ProjectsV13;Database=HemsidaDb;Integrated Security=true;MultipleActiveResultSets=true;"
+	}
+}
