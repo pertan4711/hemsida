@@ -33,6 +33,9 @@ namespace Hemsida
             {
                 cfg.UseSqlServer(_config.GetConnectionString("HemsidaConnectionString"));
             });
+
+            services.AddTransient<HemsidaSeeder>();
+            services.AddScoped<IHemsidaRepository, HemsidaRepository>();
             services.AddTransient<IMailService, NullMailService>();
             services.AddControllersWithViews();
         }

@@ -1,4 +1,5 @@
-﻿using Hemsida.Services;
+﻿using Hemsida.Data;
+using Hemsida.Services;
 using Hemsida.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,10 +13,12 @@ namespace Hemsida.Controllers
     public class AppController : Controller
     {
         private readonly IMailService _mailService;
+        private readonly IHemsidaRepository _repository;
 
-        public AppController(IMailService mailService)
+        public AppController(IMailService mailService, IHemsidaRepository repository)
         {
             _mailService = mailService;
+            _repository = repository;
         }
 
         public IActionResult Index()
@@ -59,6 +62,15 @@ namespace Hemsida.Controllers
             ViewBag.Title = "About us";
 
             return View();
+        }
+
+        public IActionResult Shop()
+        {
+            var results = _repository.GetAllProducts()
+                .OrderBy(p => p.Category)
+                .ToList();
+
+            return View(results);
         }
     }
 }
