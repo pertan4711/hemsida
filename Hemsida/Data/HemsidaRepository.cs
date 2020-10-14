@@ -16,6 +16,11 @@ namespace Hemsida.Data
             _ctx = ctx;
         }
 
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return _ctx.Orders.ToList();
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
             return _ctx.Products

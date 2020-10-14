@@ -8,5 +8,6 @@ namespace Hemsida.Data
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetProductsByCategory(string category);
         public bool SaveAll();
-   }
+        IEnumerable<Order> GetAllOrders();
+    }
 }

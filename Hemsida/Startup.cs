@@ -37,7 +37,9 @@ namespace Hemsida
             services.AddTransient<HemsidaSeeder>();
             services.AddScoped<IHemsidaRepository, HemsidaRepository>();
             services.AddTransient<IMailService, NullMailService>();
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
