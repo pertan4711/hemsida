@@ -32,22 +32,45 @@ namespace Hemsida.Data
                 var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(json);
                 _ctx.Products.AddRange(products);
 
-                var order = _ctx.Orders.Where(o => o.Id == 1).FirstOrDefault();
-                if (order != null)
+                //var order = _ctx.Orders.Where(o => o.Id == 1).FirstOrDefault();
+                //if (order != null)
+                //{
+                //    order.Items = new List<OrderItem>()
+                //    {
+                //        new OrderItem()
+                //        {
+                //            Product = products.First(),
+                //            Quantity = 5,
+                //            UnitPrice = products.First().Price,
+                //        }
+                //    };
+                //}
+
+            }
+
+            if (!_ctx.Orders.Any())
+            {
+                var order = new Order()
                 {
-                    order.Items = new List<OrderItem>()
+                    Id = 1,
+                    OrderDate = DateTime.Now,
+                    OrderNumber = "12345",
+                    Items = new List<OrderItem>()
                     {
                         new OrderItem()
                         {
-                            Product = products.First(),
-                            Quantity = 5,
-                            UnitPrice = products.First().Price,
-                        }
-                    };
-                }
+                            Id = 1,
+                            Product = _ctx.Products.First(),
+                            Quantity = 1,
+                            UnitPrice = 2,
+                        },
+                    }
+                };
 
-                _ctx.SaveChanges();
+                _ctx.Orders.Add(order);
             }
+            
+            _ctx.SaveChanges();
         }
     }
 }

@@ -21,13 +21,13 @@ namespace Hemsida.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Order>()
-                .HasData(new Order()
-                {
-                    Id = 1,
-                    OrderDate = DateTime.Now,
-                    OrderNumber = "12345"
-                });
+            //modelBuilder.Entity<Order>()
+            //    .HasData(new Order()
+            //    {
+            //        Id = 1,
+            //        OrderDate = DateTime.Now,
+            //        OrderNumber = "12345"
+            //    });
         }
     }
 }

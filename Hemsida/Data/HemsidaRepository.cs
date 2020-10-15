@@ -1,4 +1,5 @@
 ﻿using Hemsida.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,18 @@ namespace Hemsida.Data
             _ctx = ctx;
         }
 
+        public void AddEntity(object model)
+        {
+            _ctx.Add(model);
+        }
+
         public IEnumerable<Order> GetAllOrders()
         {
-            return _ctx.Orders.ToList();
+            var orders = _ctx.Orders
+                .Include(o => o.Items)
+                .ThenInclude(p => p.Product)
+                .ToList();
+            return orders;
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -26,6 +36,14 @@ namespace Hemsida.Data
             return _ctx.Products
                 .OrderBy(p => p.Title)
                 .ToList();
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return _ctx.Orders
+                .Include(o => o.Items)
+                .ThenInclude(p => p.Product)
+                .FirstOrDefault(o => o.Id == id);
         }
 
         public IEnumerable<Product> GetProductsByCategory(string category)

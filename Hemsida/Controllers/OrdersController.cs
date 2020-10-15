@@ -1,4 +1,5 @@
 ﻿using Hemsida.Data;
+using Hemsida.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,6 +22,7 @@ namespace Hemsida.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Get()
         {
             try
@@ -32,6 +34,44 @@ namespace Hemsida.Controllers
                 _logger.LogError($"Failed to get orders: {ex}");
                 return BadRequest("Failed to get orders");
             }
+        }
+
+        [HttpGet("{id:int}")]
+        public IActionResult Get(int id)
+        {
+            try
+            {
+                var order = _repository.GetOrderById(id);
+
+                if (order != null)
+                    return Ok(order);
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get orders: {ex}");
+                return BadRequest("Failed to get orders");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody]Order model)
+        {
+            try
+            {
+                _repository.AddEntity(model);
+                if (_repository.SaveAll())
+                {
+                    return Created($"/api/orders/{model.Id}", model);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save order: {ex}");
+            }
+
+            return BadRequest("Failed to save order");
         }
     }
 }
