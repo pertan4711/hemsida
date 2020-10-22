@@ -1,5 +1,7 @@
-﻿using Hemsida.Data;
+﻿using AutoMapper;
+using Hemsida.Data;
 using Hemsida.Data.Entities;
+using Hemsida.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,11 +17,15 @@ namespace Hemsida.Controllers
     {
         private readonly IHemsidaRepository _repository;
         private readonly ILogger<OrdersController> _logger;
+        private readonly IMapper _mapper;
 
-        public OrdersController(IHemsidaRepository repository, ILogger<OrdersController> logger)
+        public OrdersController(IHemsidaRepository repository,
+            ILogger<OrdersController> logger,
+            IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -44,7 +50,7 @@ namespace Hemsida.Controllers
                 var order = _repository.GetOrderById(id);
 
                 if (order != null)
-                    return Ok(order);
+                    return Ok(_mapper.Map<Order, OrderViewModel>(order));
                 else
                     return NotFound();
             }
@@ -56,14 +62,40 @@ namespace Hemsida.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Order model)
+        public IActionResult Post([FromBody] OrderViewModel model)
         {
             try
             {
-                _repository.AddEntity(model);
-                if (_repository.SaveAll())
+                if (ModelState.IsValid)
                 {
-                    return Created($"/api/orders/{model.Id}", model);
+                    var newOrder = new Order()
+                    {
+                        OrderDate = model.OrderDate,
+                        OrderNumber = model.OrderNumber,
+                        Id = model.OrderId,
+                    };
+
+                    if (newOrder.OrderDate == DateTime.MinValue)
+                    {
+                        newOrder.OrderDate = DateTime.Now;
+                    }
+
+                    _repository.AddEntity(newOrder);
+                    if (_repository.SaveAll())
+                    {
+                        var vm = new OrderViewModel()
+                        {
+                            OrderId = newOrder.Id,
+                            OrderDate = newOrder.OrderDate,
+                            OrderNumber = newOrder.OrderNumber,
+                        };
+
+                        return Created($"/api/orders/{vm.OrderId}", vm);
+                    }
+                }
+                else
+                {
+                    return BadRequest(ModelState);
                 }
             }
             catch (Exception ex)

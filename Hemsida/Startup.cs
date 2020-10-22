@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using Hemsida.Data;
 using Hemsida.Services;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +37,7 @@ namespace Hemsida
             });
 
             services.AddTransient<HemsidaSeeder>();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IHemsidaRepository, HemsidaRepository>();
             services.AddTransient<IMailService, NullMailService>();
 
