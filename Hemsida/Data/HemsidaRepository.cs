@@ -22,13 +22,19 @@ namespace Hemsida.Data
             _ctx.Add(model);
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
-            var orders = _ctx.Orders
-                .Include(o => o.Items)
-                .ThenInclude(p => p.Product)
-                .ToList();
-            return orders;
+            if (includeItems)
+            {
+                return _ctx.Orders
+                    .Include(o => o.Items)
+                    .ThenInclude(p => p.Product)
+                    .ToList();
+            }
+            else
+            {
+                return _ctx.Orders.ToList();
+            }
         }
 
         public IEnumerable<Product> GetAllProducts()
