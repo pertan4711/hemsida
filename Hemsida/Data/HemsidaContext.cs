@@ -1,4 +1,5 @@
 ﻿using Hemsida.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hemsida.Data
 {
-    public class HemsidaContext : DbContext
+    public class HemsidaContext : IdentityDbContext<StoreUser>
     {
         public HemsidaContext(DbContextOptions<HemsidaContext> options) : base(options)
         {

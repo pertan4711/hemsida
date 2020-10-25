@@ -1,6 +1,7 @@
 ﻿using Hemsida.Data;
 using Hemsida.Services;
 using Hemsida.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,7 @@ namespace Hemsida.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Shop()
         {
             var results = _repository.GetAllProducts()

@@ -27,7 +27,7 @@ namespace Hemsida
             using (var scope = scopeFactory.CreateScope())
             {
                 var seeder = scope.ServiceProvider.GetService<HemsidaSeeder>();
-                seeder.Seed();
+                seeder.SeedAsync().Wait();
             }
         }
 

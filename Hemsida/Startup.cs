@@ -5,10 +5,12 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Hemsida.Data;
+using Hemsida.Data.Entities;
 using Hemsida.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +32,11 @@ namespace Hemsida
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<StoreUser, IdentityRole>(cfg =>
+                {
+                    cfg.User.RequireUniqueEmail = true;
+                })
+                .AddEntityFrameworkStores<HemsidaContext>();
 
             services.AddDbContext<HemsidaContext>(cfg =>
             {
@@ -60,8 +67,10 @@ namespace Hemsida
             app.UseStaticFiles();
             app.UseNodeModules();
 
-            app.UseRouting();
+            app.UseAuthentication();
 
+            app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(cfg =>
             {
                 cfg.MapControllerRoute("Default",
